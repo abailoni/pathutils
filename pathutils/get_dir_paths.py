@@ -9,7 +9,7 @@ def get_home_dir():
     if username == 'abailoni':
         if hostname == 'trendytukan':
             return '/net/hcihome/storage/abailoni/'
-        elif hostname == 'ialgpu01' or hostname == 'birdperson' or hostname == 'sirherny':
+        elif hostname == 'birdperson' or hostname == 'sirherny':
             return '/home/abailoni/local_home/'
             # return '/home/abailoni/hci_home/'
         # elif hostname == 'sfb1129gpu01':
@@ -35,6 +35,34 @@ def get_home_dir():
         raise ValueError("Home path not available for this machine and user")
 
 
+def get_scratch_dir():
+    username = getpass.getuser()
+    hostname = socket.gethostname()
+    if username == 'abailoni':
+        if hostname == 'birdperson' or hostname == 'sirherny':
+            raise ValueError("Scratch path not available for this machine and user")
+            # return '/home/abailoni/hci_home/'
+        # elif hostname == 'sfb1129gpu01':
+        #     return '/net/hcihome/storage/abailoni/ial_local_home/'
+        elif hostname == 'quadxeon5':
+            raise ValueError("Scratch path not available for this machine and user")
+        elif hostname == 'hgsgpu01':
+            raise ValueError("Scratch path not available for this machine and user")
+        elif hostname == 'hgsgpu02':
+            raise ValueError("Scratch path not available for this machine and user")
+        else:
+            return '/net/hcihome/storage/abailoni/scratch/'
+    elif hostname == 'trendytukan' and username == 'abailoni_local':
+        return '/home/abailoni_local/scratch/'
+    elif username == 'abailoni_local' and hostname == 'fatchicken':
+        raise ValueError("Scratch path not available for this machine and user")
+    elif hostname == 'sfb1129gpu02' and username == 'abailoni_tmp':
+        return "/home_sdb/abailoni_tmp/scratch/"
+    else:
+        raise ValueError("Scratch path not available for this machine and user")
+
+
+
 def get_trendytukan_drive_dir():
     username = getpass.getuser()
     hostname = socket.gethostname()
@@ -42,7 +70,7 @@ def get_trendytukan_drive_dir():
         return '/mnt/localdata0/abailoni/'
     elif hostname == 'trendytukan' and username == 'abailoni_local':
         return '/home/abailoni_local/trendyTukan_localdata0/'
-    elif (hostname == 'ialgpu01' or hostname == 'birdperson' or hostname == 'sirherny') and (username == 'abailoni'):
+    elif (hostname == 'birdperson' or hostname == 'sirherny') and (username == 'abailoni'):
         return '/home/abailoni/trendyTukan_drive/'
     elif username == 'abailoni_local' and hostname == 'fatchicken':
         return '/home/abailoni_local/trendyTukan_drive/'
@@ -63,6 +91,7 @@ def get_list_source_dirs():
             # "python_libraries/nifty/python",
             "repositories/pathutils",
             "python_libraries/nifty/tmp/tmp.VVvldgIb9A/cmake-build-debug/python",
+            # "/tmp/tmp.VVvldgIb9A/cmake-build-debug/python",
             "python_libraries/nifty/tmp/tmp.1DGbcigwoN/cmake-build-debug/python", # Affogato
             "python_libraries/cremi_python",
             "pyCharm_projects/inferno",
@@ -70,6 +99,7 @@ def get_list_source_dirs():
             # "pyCharm_projects/neuro-skunkworks",
             "pyCharm_projects/segmfriends",
             "pyCharm_projects/speedrun",
+            "pyCharm_projects/SigNet",
             "pyCharm_projects/neurofire",
             "pyCharm_projects/embeddingutils",
             "pyCharm_projects/firelight",
